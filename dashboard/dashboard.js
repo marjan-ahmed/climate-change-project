@@ -1,45 +1,28 @@
-function updateSummary() {
-    const region = document.getElementById('region').value;
-    const gas = document.getElementById('gas').value;
-    const variable = document.getElementById('variable').value;
+// Real-time search suggestions
+const locationInput = document.getElementById('location');
+const suggestionsContainer = document.getElementById('suggestions');
 
-    console.log('Region:', region);
-    console.log('Gas:', gas);
-    console.log('Variable:', variable);
+locationInput.addEventListener('input', async () => {
+    const query = locationInput.value;
 
-    // Placeholder data, replace with actual API calls or data processing
-    const summaryData = {
-        'global': {
-            'co2': {
-                'temperature': 'Global average temperature has increased by 1.1°C since the pre-industrial era.',
-                'sea-level': 'Global sea level has risen by about 20 cm since 1900.',
-                'emissions': 'Global CO2 emissions reached a record high of 36.44 billion tonnes in 2019.'
-            },
-            'methane': {
-                'temperature': 'Methane contributes to about 16% of global greenhouse gas emissions.',
-                'sea-level': 'Methane’s impact on sea level rise is indirect through temperature increase.',
-                'emissions': 'Global methane emissions have increased by 150% since 1750.'
-            },
-            'nitrous-oxide': {
-                'temperature': 'Nitrous oxide contributes to about 6% of global greenhouse gas emissions.',
-                'sea-level': 'Nitrous oxide’s impact on sea level rise is indirect through temperature increase.',
-                'emissions': 'Global nitrous oxide emissions have increased by 20% over the past 30 years.'
-            }
-        }
-        // Add similar data for other regions
-    };
+    if (query.length > 0) {
+        const response = await axios.get(`https://api.opencagedata.com/geocode/v1/json?q=${query}&key=YOUR_OPENCAGE_API_KEY`); // Replace with your OpenCage API key
+        const results = response.data.results;
 
-    const additionalData = {
-        'co2': 'Carbon dioxide (CO₂): A naturally occurring gas, CO₂ is also a byproduct of burning fossil fuels (such as oil, gas, and coal), of burning biomass, of land-use changes (LUCs) and of industrial processes (e.g., cement production). It is the main gas contributing to climate change.',
-        'methane': 'Methane (CH₄): A greenhouse gas that is the major component of natural gas and is associated with all hydrocarbon fuels. Significant human-caused methane emissions also occur as a result of some agriculture activities. Methane is also produced naturally where organic matter decays under anaerobic (without oxygen) conditions, such as in wetlands.',
-        'nitrous-oxide': 'Nitrous oxide (N₂O): A greenhouse gas that is produced by soil cultivation practices, especially the use of commercial and organic fertilizers, fossil fuel combustion, nitric acid production, and biomass burning.'
-    };
+        // Clear previous suggestions
+        suggestionsContainer.innerHTML = '';
 
-    const regionData = summaryData[region];
-    const gasData = regionData ? regionData[gas] : null;
-    const summary = gasData ? gasData[variable] : 'No data available for the selected options.';
-    const gasInfo = additionalData[gas] ? additionalData[gas] : '';
-
-    console.log('Summary:', summary);
-    document.getElementById('summary-content').innerHTML = `<p>${summary}</p><p>${gasInfo}</p>`;
-}
+        // Populate suggestions
+        results.forEach(result => {
+            const li = document.createElement('li');
+            li.textContent = result.formatted_address;
+            li.onclick = () => {
+                locationInput.value = result.formatted_address; // Set input value to selected suggestion
+                suggestionsContainer.innerHTML = ''; // Clear suggestions
+            };
+            suggestionsContainer.appendChild(li);
+        });
+    } else {
+        suggestionsContainer.innerHTML = ''; // Clear suggestions if input is empty
+    }
+});

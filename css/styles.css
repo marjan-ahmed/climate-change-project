@@ -1,5 +1,6 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: gilroy, sans-serif;
+    font-weight: 500;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
@@ -58,7 +59,6 @@ canvas {
 }
 
 
-
 .hero-img {
     background-size: cover;
     object-fit: cover;
@@ -99,4 +99,80 @@ canvas {
     height: 100%;
     padding: 30px;
     
+}
+
+.heading {
+    padding-top: 20vh;
+    margin-bottom: 10px;
+    font-family: poppins, jost;
+    font-weight: 900;
+    text-align: center;
+    
+}
+
+.hero-para {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+
+.button {
+    width: 8.5vw;
+    height: 3vw;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #0099ffc5;
+    border-radius: 30px;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    position: relative;
+    cursor: pointer;
+    transition-duration: .2s;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
+    padding-left: 8px;
+    transition-duration: .5s;
+  }
+
+  
+  .svgIcon {
+    height: 25px;
+    transition-duration: 1.5s;
+  }
+  
+  .bell path {
+    fill: rgb(19, 19, 19);
+  }
+  
+  .button:hover {
+    background-color: rgb(20, 255, 157);
+    transition-duration: .5s;
+  }
+  
+  .button:active {
+    transform: scale(0.97);
+    transition-duration: .2s;
+  }
+  
+  .button:hover .svgIcon {
+    transform: rotate(250deg);
+    transition-duration: 1.5s;
+  }
+  
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.explore-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 10vh;
 }

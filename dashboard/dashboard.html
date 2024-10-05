@@ -5,46 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Climate Change Dashboard</title>
     <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
-    <div class="dashboard">
+    <header>
         <h1>Climate Change Dashboard</h1>
-        <div class="filters">
-            <label for="region">Select Region:</label>
-            <select id="region">
-                <option value="global">Global</option>
-                <option value="north-america">North America</option>
-                <option value="south-america">South America</option>
-                <option value="europe">Europe</option>
-                <option value="asia">Asia</option>
-                <option value="africa">Africa</option>
-                <option value="oceania">Oceania</option>
-            </select>
-
-            <label for="gas">Select Greenhouse Gas:</label>
-            <select id="gas">
+    </header>
+    <main>
+        <div class="form-container">
+            <label for="location">Enter Location:</label>
+            <input type="text" id="location" placeholder="Type your location here">
+            <ul id="suggestions" class="suggestions"></ul>
+            
+            <label for="gas-type">Select Greenhouse Gas:</label>
+            <select id="gas-type">
                 <option value="co2">CO2</option>
-                <option value="methane">Methane</option>
-                <option value="nitrous-oxide">Nitrous Oxide</option>
+                <option value="ch4">CH4</option>
+                <option value="n2o">N2O</option>
             </select>
 
-            <label for="variable">Select Variable:</label>
-            <select id="variable">
-                <option value="temperature">Temperature</option>
-                <option value="sea-level">Sea Level</option>
-                <option value="emissions">Emissions</option>
-            </select>
-
-            <button onclick="updateSummary()">Update Summary</button>
+            <button id="show-summary">Show Summary</button>
         </div>
-        <div class="summary">
-            <h2>Summary</h2>
-            <div id="summary-content">
-                <!-- Summary content will be displayed here -->
-            </div>
-        </div>
-    </div>
-
+        <div id="map" class="map"></div>
+        <div id="summary" class="summary"></div>
+    </main>
+    <footer>
+        <p>Climate Data Dashboard &copy; 2024</p>
+    </footer>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="dashboard.js"></script>
+    <script src="map.js"></script>
+    <script src="climate_data.js"></script>
 </body>
 </html>
