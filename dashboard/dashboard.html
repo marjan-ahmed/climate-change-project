@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climate Change Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="dashboard">
+        <h1>Climate Change Dashboard</h1>
+        <div class="filters">
+            <label for="region">Select Region:</label>
+            <select id="region">
+                <option value="global">Global</option>
+                <option value="north-america">North America</option>
+                <option value="south-america">South America</option>
+                <option value="europe">Europe</option>
+                <option value="asia">Asia</option>
+                <option value="africa">Africa</option>
+                <option value="oceania">Oceania</option>
+            </select>
+
+            <label for="gas">Select Greenhouse Gas:</label>
+            <select id="gas">
+                <option value="co2">CO2</option>
+                <option value="methane">Methane</option>
+                <option value="nitrous-oxide">Nitrous Oxide</option>
+            </select>
+
+            <label for="variable">Select Variable:</label>
+            <select id="variable">
+                <option value="temperature">Temperature</option>
+                <option value="sea-level">Sea Level</option>
+                <option value="emissions">Emissions</option>
+            </select>
+
+            <button onclick="updateSummary()">Update Summary</button>
+        </div>
+        <div class="summary">
+            <h2>Summary</h2>
+            <div id="summary-content">
+                <!-- Summary content will be displayed here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
