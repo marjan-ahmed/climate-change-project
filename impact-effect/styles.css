@@ -1,0 +1,58 @@
+* {
+    font-family: gilroy;
+}
+
+#bold-h1{
+    display: flex; 
+    font-size: 1.4em;
+}
+
+.cause {
+    margin-bottom: 15px;
+}
+
+
+footer {
+    background-color: #494848;
+    width: 110%;
+    text-align: center;
+    margin-top: 7vw;
+    padding: 20px;
+    text-align: center;
+
+}
+
+footer a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column; /* Change to column direction */
+    align-items: center; /* Center the items horizontally */
+    color: white;
+}
+
+.footer-links,
+.footer-social {
+    margin: 10px 0; /* Add some space between sections */
+}
+
+.footer-content ul {
+    padding: 0;
+    list-style: none;
+}
+
+.footer-content li {
+    margin: 5px 0; /* Add vertical spacing between links */
+}
+
+.footer-bottom {
+    margin-top: 20px; /* Add space above the bottom text */
+    color: white;
+}

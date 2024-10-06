@@ -2,73 +2,103 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
 }
 
 header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
     text-align: center;
 }
 
-.form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 20px 0;
+main {
+    padding: 20px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+}
+
+.controls {
+    margin-bottom: 20px;
 }
 
 label {
-    margin: 10px 0 5px;
+    display: block;
+    margin-bottom: 5px;
 }
 
-input, select {
-    padding: 5px;
-    margin-bottom: 15px;
-    width: 200px; /* Set a width for input and select */
-}
-
-button {
-    padding: 10px 15px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #218838;
-}
-
-.map {
+select, button {
     width: 100%;
-    height: 400px;
-    margin: 20px 0;
+    padding: 10px;
+    margin-bottom: 10px;
 }
 
 .summary {
     padding: 20px;
-    background-color: #fff;
     border: 1px solid #ccc;
-    margin-top: 20px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
 }
 
-.suggestions {
-    list-style: none;
+
+footer {
+    background-color: #494848;
+    width: 100%;
+    text-align: center;
+    margin-top: 10vw;
+    padding: 20px;
+    text-align: center;
+    position: static;
+    color: white;
+
+}
+
+footer a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column; /* Change to column direction */
+    align-items: center; /* Center the items horizontally */
+}
+
+.footer-links,
+.footer-social {
+    margin: 10px 0; /* Add some space between sections */
+}
+
+.footer-content ul {
     padding: 0;
-    margin: 0;
-    border: 1px solid #ccc;
-    max-height: 100px;
-    overflow-y: auto;
-    width: 200px;
+    list-style: none;
 }
 
-.suggestions li {
-    padding: 5px;
-    cursor: pointer;
+.footer-content li {
+    margin: 5px 0; /* Add vertical spacing between links */
 }
 
-.suggestions li:hover {
-    background-color: #f0f0f0;
+.footer-bottom {
+    margin-top: 20px; /* Add space above the bottom text */
 }

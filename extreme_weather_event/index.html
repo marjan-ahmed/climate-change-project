@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climate Info Dashboard</title>
+    <!-- <link rel="stylesheet" href="styles.css"> Your CSS file -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Inline styles for better readability */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 250px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .country-data {
+            margin-top: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            text-align: left;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Climate Information Dashboard</h1>
+        <input type="text" id="countryInput" placeholder="Enter city name" />
+        <button id="fetchData">Get Climate Info</button>
+
+        <div id="countryData" class="country-data"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Climate Dashboard. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const api_key = ""; // Your OpenWeatherMap API key
+        const api = "https://api.openweathermap.org/data/2.5/weather"; // Base URL
+
+        document.getElementById('fetchData').addEventListener('click', () => {
+            const city = document.getElementById('countryInput').value.trim();
+
+            if (!city) {
+                alert("Please enter a city name.");
+                return;
+            }
+
+            fetchClimateData(city);
+        });
+
+        async function fetchClimateData(city) {
+            try {
+                const response = await fetch(`${api}?q=${city}&appid=${api_key}&units=metric`);
+
+                if (!response.ok) {
+                    throw new Error("Error fetching climate data. Please check the city name.");
+                }
+
+                const data = await response.json();
+                displayCountryData(data);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                document.getElementById('countryData').innerHTML = `<p>${error.message}</p>`;
+            }
+        }
+
+        function displayCountryData(data) {
+            const countryDataDiv = document.getElementById('countryData');
+            countryDataDiv.innerHTML = ""; // Clear previous data
+
+            // Check if data is available
+            if (data) {
+                countryDataDiv.innerHTML = `
+                    <h2>Climate Information for ${data.name}</h2>
+                    <p><strong>Temperature:</strong> ${data.main.temp} °C</p>
+                    <p><strong>Humidity:</strong> ${data.main.humidity} %</p>
+                    <p><strong>Weather:</strong> ${data.weather[0].description}</p>
+                    <p><strong>Wind Speed:</strong> ${data.wind.speed} m/s</p>
+                `;
+
+                fetchExtremeWeatherAlerts(data.coord.lat, data.coord.lon);
+            } else {
+                countryDataDiv.innerHTML = `<p>No data available for ${city}.</p>`;
+            }
+        }
+
+        async function fetchExtremeWeatherAlerts(lat, lon) {
+            try {
+                const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,daily&appid=${api_key}`);
+
+                if (!response.ok) {
+                    throw new Error("Error fetching weather alerts.");
+                }
+
+                const data = await response.json();
+                displayWeatherAlerts(data.alerts);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                document.getElementById('countryData').innerHTML += `<p>${error.message}</p>`;
+            }
+        }
+
+        function displayWeatherAlerts(alerts) {
+            const countryDataDiv = document.getElementById('countryData');
+            
+            if (alerts && alerts.length > 0) {
+                const alertHtml = alerts.map(alert => `
+                    <div class="alert">
+                        <h3>${alert.event}</h3>
+                        <p><strong>Start:</strong> ${new Date(alert.start * 1000).toLocaleString()}</p>
+                        <p><strong>End:</strong> ${new Date(alert.end * 1000).toLocaleString()}</p>
+                        <p><strong>Description:</strong> ${alert.description}</p>
+                    </div>
+                `).join('');
+
+                countryDataDiv.innerHTML += `
+                    <h2>Extreme Weather Alerts</h2>
+                    ${alertHtml}
+                `;
+            } else {
+                countryDataDiv.innerHTML += `<p>No extreme weather alerts for this location.</p>`;
+            }
+        }
+    </script>
+</body>
+</html>

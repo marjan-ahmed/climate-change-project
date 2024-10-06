@@ -7,6 +7,11 @@ body {
     color: #333;
 }
 
+.divider {
+    border: 2px solid black;
+    margin-top: 80px;
+}
+
 header {
     background-color: #333;
     color: #fff;
@@ -50,8 +55,15 @@ footer {
 .chart-container {
     width: 100%; /* Set to 100% for responsiveness */
     max-width: 800px; /* Optional: set a max-width */
-    margin: 20px auto;
+    margin: 20px;
+    margin-left: auto;
+    display: flex;
+    text-align: left;
+    flex-wrap: wrap;
+    flex-direction: row;
 }
+
+
 
 canvas {
     width: 100% !important; /* Make the canvas take full width */
@@ -172,7 +184,69 @@ a {
 .explore-content {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
     flex-wrap: wrap;
     margin-top: 10vh;
+}
+
+.card {
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-2vh);
+}
+
+#gasous-info {
+    margin-top: 13vh;
+}
+
+.video {
+    width: 50vw;
+    display: block;
+    margin: 5vh auto;
+}
+
+footer {
+    background-color: #494848;
+    width: 100%;
+    text-align: center;
+    margin-top: 7vw;
+    padding: 20px;
+    text-align: center;
+
+}
+
+footer a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column; /* Change to column direction */
+    align-items: center; /* Center the items horizontally */
+}
+
+.footer-links,
+.footer-social {
+    margin: 10px 0; /* Add some space between sections */
+}
+
+.footer-content ul {
+    padding: 0;
+    list-style: none;
+}
+
+.footer-content li {
+    margin: 5px 0; /* Add vertical spacing between links */
+}
+
+.footer-bottom {
+    margin-top: 20px; /* Add space above the bottom text */
 }
