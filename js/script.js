@@ -1,8 +1,8 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const navbar = document.querySelector('.navbar');
 
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) { 
+    window.addEventListener('scroll', function () {
+        if (window.scrollY > 50) {
             navbar.classList.add('navbar-blur');
         } else {
             navbar.classList.remove('navbar-blur');
@@ -18,12 +18,12 @@ fetch('data/ghg_center_data.csv')
     })
     .catch(error => console.error('Error fetching the data:', error));
 
-// Function to parse CSV data
+
 function parseCSV(data) {
-    const lines = data.split('\n').slice(1); // Remove header
+    const lines = data.split('\n').slice(1);
     const labels = [];
     const co2Levels = [];
-    
+
     lines.forEach(line => {
         const [year, co2] = line.split(',');
         if (year && co2) {
@@ -31,11 +31,11 @@ function parseCSV(data) {
             co2Levels.push(parseFloat(co2));
         }
     });
-    
+
     return { labels, co2Levels };
 }
 
-// Function to create a line chart using Chart.js
+
 function createLineChart(data) {
     const ctx = document.getElementById('co2Chart').getContext('2d');
     new Chart(ctx, {
@@ -80,7 +80,7 @@ function createLineChart(data) {
                 },
                 tooltip: {
                     callbacks: {
-                        label: function(context) {
+                        label: function (context) {
                             return `Year: ${context.label}, CO2: ${context.raw} ppm`;
                         }
                     }
@@ -91,8 +91,8 @@ function createLineChart(data) {
 }
 
 const co2Chart = {
-    labels: ['2018', '2019', '2020', '2021', '2022'], // Sample years
-    o2Levels: [209.5, 209.7, 209.6, 209.8, 209.9] // Sample O2 levels in ppm
+    labels: ['2018', '2019', '2020', '2021', '2022'],
+    o2Levels: [209.5, 209.7, 209.6, 209.8, 209.9]
 };
 
 
@@ -103,47 +103,47 @@ function createO2Chart(data) {
     new Chart(ctx, {
         type: 'line',
         data: {
-            labels: data.labels, // Year labels for the X-axis
+            labels: data.labels,
             datasets: [{
-                label: 'O2 Levels (ppm)', // Label for the dataset
-                data: data.o2Levels, // O2 level data for the Y-axis
-                backgroundColor: 'rgba(153, 102, 255, 0.2)', // Background color for the area under the line
-                borderColor: 'rgba(153, 102, 255, 1)', // Color of the line
-                borderWidth: 2, // Width of the line
-                tension: 0.1, // Smoothness of the line
-                fill: true, // Fill area under the line
+                label: 'O2 Levels (ppm)',
+                data: data.o2Levels,
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderColor: 'rgba(153, 102, 255, 1)',
+                borderWidth: 2,
+                tension: 0.1,
+                fill: true,
             }]
         },
         options: {
-            responsive: true, // Make the chart responsive
+            responsive: true,
             scales: {
                 x: {
                     title: {
                         display: true,
-                        text: 'Year' // Title for the X-axis
+                        text: 'Year'
                     },
                     ticks: {
                         autoSkip: true,
-                        maxTicksLimit: 10 // Limit the number of ticks on the X-axis
+                        maxTicksLimit: 10
                     }
                 },
                 y: {
                     title: {
                         display: true,
-                        text: 'O2 Levels (ppm)' // Title for the Y-axis
+                        text: 'O2 Levels (ppm)'
                     },
-                    beginAtZero: true // Start Y-axis at zero
+                    beginAtZero: true
                 }
             },
             plugins: {
                 legend: {
-                    display: true, // Show legend
-                    position: 'top' // Position of the legend
+                    display: true,
+                    position: 'top'
                 },
                 tooltip: {
                     callbacks: {
-                        label: function(context) {
-                            return `Year: ${context.label}, O2: ${context.raw} ppm`; // Tooltip label formatting
+                        label: function (context) {
+                            return `Year: ${context.label}, O2: ${context.raw} ppm`;
                         }
                     }
                 }
@@ -165,7 +165,7 @@ const o2Data = {
         208.5, 208.4, 208.3, 208.2, 208.1, 208.0, 207.9, 207.8, 207.7, 207.6,
         207.5, 207.4, 207.3, 207.2, 207.1, 207.0, 206.9, 206.8, 206.7, 206.6,
         206.5, 206.4, 206.3, 206.2, 206.1, 206.0, 205.9, 205.8, 205.7, 205.6,
-        205.5, 205.4, 205.3, 205.2, 203.1 //
+        205.5, 205.4, 205.3, 205.2, 203.1
     ]
 };
 
@@ -176,47 +176,47 @@ function createO2Chart(data) {
     new Chart(ctx, {
         type: 'line',
         data: {
-            labels: data.labels, // Year labels for the X-axis
+            labels: data.labels,
             datasets: [{
-                label: 'O2 Levels (ppm)', // Label for the dataset
-                data: data.o2Levels, // O2 level data for the Y-axis
-                backgroundColor: 'rgba(153, 102, 255, 0.2)', // Background color for the area under the line
-                borderColor: 'rgba(153, 102, 255, 1)', // Color of the line
-                borderWidth: 2, // Width of the line
-                tension: 0.1, // Smoothness of the line
-                fill: true, // Fill area under the line
+                label: 'O2 Levels (ppm)',
+                data: data.o2Levels,
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderColor: 'rgba(153, 102, 255, 1)',
+                borderWidth: 2,
+                tension: 0.1,
+                fill: true,
             }]
         },
         options: {
-            responsive: true, // Make the chart responsive
+            responsive: true,
             scales: {
                 x: {
                     title: {
                         display: true,
-                        text: 'Year' // Title for the X-axis
+                        text: 'Year'
                     },
                     ticks: {
                         autoSkip: true,
-                        maxTicksLimit: 10 // Limit the number of ticks on the X-axis
+                        maxTicksLimit: 10
                     }
                 },
                 y: {
                     title: {
                         display: true,
-                        text: 'O2 Levels (ppm)' // Title for the Y-axis
+                        text: 'O2 Levels (ppm)'
                     },
-                    beginAtZero: false // Set to false since O2 levels do not start at zero
+                    beginAtZero: false
                 }
             },
             plugins: {
                 legend: {
-                    display: true, // Show legend
-                    position: 'top' // Position of the legend
+                    display: true,
+                    position: 'top'
                 },
                 tooltip: {
                     callbacks: {
-                        label: function(context) {
-                            return `Year: ${context.label}, O2: ${context.raw} ppm`; // Tooltip label formatting
+                        label: function (context) {
+                            return `Year: ${context.label}, O2: ${context.raw} ppm`;
                         }
                     }
                 }
@@ -242,7 +242,7 @@ const methaneData = {
     ]
 };
 
-// Create the Methane levels chart
+
 createMethaneChart(methaneData);
 
 function createMethaneChart(data) {
@@ -250,47 +250,47 @@ function createMethaneChart(data) {
     new Chart(ctx, {
         type: 'line',
         data: {
-            labels: data.labels, // Year labels for the X-axis
+            labels: data.labels,
             datasets: [{
-                label: 'Methane Levels (ppb)', // Label for the dataset
-                data: data.methaneLevels, // Methane level data for the Y-axis
-                backgroundColor: 'rgba(255, 99, 132, 0.2)', // Background color for the area under the line
-                borderColor: 'rgba(255, 99, 132, 1)', // Color of the line
-                borderWidth: 2, // Width of the line
-                tension: 0.1, // Smoothness of the line
-                fill: true, // Fill area under the line
+                label: 'Methane Levels (ppb)',
+                data: data.methaneLevels,
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 2,
+                tension: 0.1,
+                fill: true,
             }]
         },
         options: {
-            responsive: true, // Make the chart responsive
+            responsive: true,
             scales: {
                 x: {
                     title: {
                         display: true,
-                        text: 'Year' // Title for the X-axis
+                        text: 'Year'
                     },
                     ticks: {
                         autoSkip: true,
-                        maxTicksLimit: 10 // Limit the number of ticks on the X-axis
+                        maxTicksLimit: 10
                     }
                 },
                 y: {
                     title: {
                         display: true,
-                        text: 'Methane Levels (ppb)' // Title for the Y-axis
+                        text: 'Methane Levels (ppb)'
                     },
-                    beginAtZero: false // Methane levels do not start at zero
+                    beginAtZero: false
                 }
             },
             plugins: {
                 legend: {
-                    display: true, // Show legend
-                    position: 'top' // Position of the legend
+                    display: true,
+                    position: 'top'
                 },
                 tooltip: {
                     callbacks: {
-                        label: function(context) {
-                            return `Year: ${context.label}, CH₄: ${context.raw} ppb`; // Tooltip label formatting
+                        label: function (context) {
+                            return `Year: ${context.label}, CH₄: ${context.raw} ppb`;
                         }
                     }
                 }

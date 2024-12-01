@@ -6,7 +6,7 @@ body {
     background-color: #f4f4f4;
     color: #333;
     padding-top: 50px;
-    
+
 }
 
 .divider {
@@ -39,10 +39,10 @@ nav ul li a {
 
 .navbar-blur {
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); /* Safari support */
-    background-color: rgba(255, 255, 255, 0.7); /* Adjust the color and opacity as needed */
-    border-bottom: 1px solid rgba(0, 0, 0, 0.5); /* Add border here */
-  }
+    -webkit-backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.7);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
 
 main {
     padding: 20px;
@@ -62,8 +62,8 @@ footer {
 }
 
 .chart-container {
-    width: 100%; /* Set to 100% for responsiveness */
-    max-width: 800px; /* Optional: set a max-width */
+    width: 100%;
+    max-width: 800px;
     margin: 20px;
     margin-left: auto;
     display: flex;
@@ -75,8 +75,8 @@ footer {
 
 
 canvas {
-    width: 100% !important; /* Make the canvas take full width */
-    height: auto !important; /* Maintain aspect ratio */
+    width: 100% !important;
+    height: auto !important;
 }
 
 
@@ -90,17 +90,18 @@ canvas {
 .hero-section {
     position: relative;
     width: 100%;
-    height: 100vh; /* Adjust height as needed */
+    height: 100vh;
 }
 
 @media only screen and (max-width: 600px) {
     body {
         padding: -50px;
     }
+
     .hero-section {
         height: 120%;
     }
-  }
+}
 
 .hero-img {
     width: 100%;
@@ -118,14 +119,14 @@ canvas {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7); /* Adjust the RGBA values to change the color and transparency */
-    z-index: 1; /* Ensure the overlay is above the image */
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
 }
 
 .content {
     position: relative;
-    z-index: 2; /* Ensure content is above the overlay */
-    color: white; /* Adjust text color as needed */
+    z-index: 2;
+    color: white;
     height: 100%;
     padding: 30px;
 }
@@ -136,7 +137,7 @@ canvas {
     font-family: poppins, jost;
     font-weight: 900;
     text-align: center;
-    
+
 }
 
 .hero-para {
@@ -165,34 +166,34 @@ canvas {
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
     padding-left: 8px;
     transition-duration: .5s;
-  }
+}
 
-  
-  .svgIcon {
+
+.svgIcon {
     height: 25px;
     transition-duration: 1.5s;
     color: white;
-  }
-  
-  .bell path {
+}
+
+.bell path {
     fill: rgb(19, 19, 19);
-  }
-  
-  .button:hover {
+}
+
+.button:hover {
     background-color: #758a48;
     transition-duration: .5s;
-  }
-  
-  .button:active {
+}
+
+.button:active {
     transform: scale(0.97);
     transition-duration: .2s;
-  }
-  
-  .button:hover .svgIcon {
+}
+
+.button:hover .svgIcon {
     transform: rotate(250deg);
     transition-duration: 1.5s;
-  }
-  
+}
+
 
 a {
     text-decoration: none;
@@ -247,13 +248,13 @@ footer a:hover {
 
 .footer-content {
     display: flex;
-    flex-direction: column; /* Change to column direction */
-    align-items: center; /* Center the items horizontally */
+    flex-direction: column;
+    align-items: center;
 }
 
 .footer-links,
 .footer-social {
-    margin: 10px 0; /* Add some space between sections */
+    margin: 10px 0;
 }
 
 .footer-content ul {
@@ -262,9 +263,9 @@ footer a:hover {
 }
 
 .footer-content li {
-    margin: 5px 0; /* Add vertical spacing between links */
+    margin: 5px 0;
 }
 
 .footer-bottom {
-    margin-top: 20px; /* Add space above the bottom text */
+    margin-top: 20px;
 }
