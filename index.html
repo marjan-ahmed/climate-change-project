@@ -27,31 +27,31 @@
 
 
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
+     <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+      <div class="container-fluid">
+          <a class="navbar-brand" style="font-size: 30px; font-weight: 900; font-family: jost;" href="#">Clima</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+              <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="dashboard/dashboard.html">Dashboard</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="https://find-the-weather.vercel.app/">Weather</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="impact-effect/index.html">Causes & Effect</a>
-              </li>
-            </ul>
-            </form>
+              <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="dashboard/dashboard.html">Dashboard</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="https://find-the-weather.vercel.app/">Weather</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="impact-effect/index.html">Causes & Effect</a>
+                  </li>
+              </ul>
           </div>
-        </div>
-      </nav>
+      </div>
+  </nav>
+
 
       <!-- here Section starts -->
 
@@ -60,9 +60,9 @@
         <div class="overlay"></div>
         <div class="content">
             <h1 class="heading">Clima</h1>
-            <p class="hero-para">
+            <p class="hero-para" style="padding-left: 30px; padding-right: 30px; line-height: 1.7; font-family: poppins;">
               The global climate of Earth includes long-term patterns of temperature, humidity, wind, and precipitation that vary by region, influenced by greenhouse gases like CO2 and CH4, leading to global warming and extreme weather events. Current climate data can be accessed from resources like NOAA and NASA, providing vital information on temperature, humidity, and greenhouse gas levels. Utilizing APIs, developers can retrieve and display this data to understand climate dynamics and address climate change challenges effectively.</p>
-            <button class="button">
+            <button  class="button">
               <a href="#explore-heading">
               <svg class="svgIcon" viewBox="0 0 512 512" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm50.7-186.9L162.4 380.6c-19.4 7.5-38.5-11.6-31-31l55.5-144.3c3.3-8.5 9.9-15.1 18.4-18.4l144.3-55.5c19.4-7.5 38.5 11.6 31 31L325.1 306.7c-3.2 8.5-9.9 15.1-18.4 18.4zM288 256a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"></path></svg>
              Explore
@@ -138,7 +138,7 @@
           <div class="row">
             <div class="col">
               <div class="chart-container">
-                <canvas id="co2Chart"></canvas>
+                <canvas id="co2Chart" width="400" height="200"></canvas>
             </div>
             </div>
           </div>
@@ -223,6 +223,5 @@
     
     <script src="js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
 </body>
 </html>

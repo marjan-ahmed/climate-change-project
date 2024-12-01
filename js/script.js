@@ -1,4 +1,15 @@
-// Fetching data from CSV
+document.addEventListener('DOMContentLoaded', function() {
+    const navbar = document.querySelector('.navbar');
+
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) { 
+            navbar.classList.add('navbar-blur');
+        } else {
+            navbar.classList.remove('navbar-blur');
+        }
+    });
+});
+
 fetch('data/ghg_center_data.csv')
     .then(response => response.text())
     .then(data => {
@@ -142,12 +153,97 @@ function createO2Chart(data) {
 }
 
 const o2Data = {
-    labels: ['2018', '2019', '2020', '2021', '2022'], // Sample years
-    o2Levels: [209.5, 209.7, 209.6, 209.8, 209.9] // Sample O2 levels in ppm
+    labels: [
+        '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989',
+        '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999',
+        '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009',
+        '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019',
+        '2020', '2021', '2022', '2023', '2024'
+    ],
+    o2Levels: [
+        208.5, 208.9, 209.3, 209.2, 209.1, 209.0, 208.9, 208.8, 208.7, 208.6,
+        208.5, 208.4, 208.3, 208.2, 208.1, 208.0, 207.9, 207.8, 207.7, 207.6,
+        207.5, 207.4, 207.3, 207.2, 207.1, 207.0, 206.9, 206.8, 206.7, 206.6,
+        206.5, 206.4, 206.3, 206.2, 206.1, 206.0, 205.9, 205.8, 205.7, 205.6,
+        205.5, 205.4, 205.3, 205.2, 203.1 //
+    ]
 };
-// Load your O2 data
 
 createO2Chart(o2Data);
+
+function createO2Chart(data) {
+    const ctx = document.getElementById('o2Chart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: data.labels, // Year labels for the X-axis
+            datasets: [{
+                label: 'O2 Levels (ppm)', // Label for the dataset
+                data: data.o2Levels, // O2 level data for the Y-axis
+                backgroundColor: 'rgba(153, 102, 255, 0.2)', // Background color for the area under the line
+                borderColor: 'rgba(153, 102, 255, 1)', // Color of the line
+                borderWidth: 2, // Width of the line
+                tension: 0.1, // Smoothness of the line
+                fill: true, // Fill area under the line
+            }]
+        },
+        options: {
+            responsive: true, // Make the chart responsive
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Year' // Title for the X-axis
+                    },
+                    ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 10 // Limit the number of ticks on the X-axis
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'O2 Levels (ppm)' // Title for the Y-axis
+                    },
+                    beginAtZero: false // Set to false since O2 levels do not start at zero
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true, // Show legend
+                    position: 'top' // Position of the legend
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return `Year: ${context.label}, O2: ${context.raw} ppm`; // Tooltip label formatting
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+const methaneData = {
+    labels: [
+        '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989',
+        '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999',
+        '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009',
+        '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019',
+        '2020', '2021', '2022', '2023', '2024'
+    ],
+    methaneLevels: [
+        1650, 1660, 1670, 1680, 1690, 1700, 1710, 1720, 1730, 1740,
+        1750, 1760, 1770, 1780, 1790, 1800, 1810, 1820, 1830, 1840,
+        1850, 1860, 1870, 1880, 1890, 1900, 1910, 1920, 1930, 1940,
+        1950, 1960, 1970, 1980, 1990, 2000, 2010, 2020, 2030, 2040,
+        2050, 2060, 2070, 2080, 2090
+    ]
+};
+
+// Create the Methane levels chart
+createMethaneChart(methaneData);
 
 function createMethaneChart(data) {
     const ctx = document.getElementById('methaneChart').getContext('2d');
@@ -183,7 +279,7 @@ function createMethaneChart(data) {
                         display: true,
                         text: 'Methane Levels (ppb)' // Title for the Y-axis
                     },
-                    beginAtZero: true // Start Y-axis at zero
+                    beginAtZero: false // Methane levels do not start at zero
                 }
             },
             plugins: {
@@ -202,12 +298,3 @@ function createMethaneChart(data) {
         }
     });
 }
-
-// Sample Data
-const methaneData = {
-    labels: ['2018', '2019', '2020', '2021', '2022'], // Replace with real data
-    methaneLevels: [1850, 1860, 1870, 1880, 1890] // Replace with real data
-};
-
-// Create the Methane levels chart
-createMethaneChart(methaneData);
